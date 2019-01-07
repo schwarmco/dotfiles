@@ -27,24 +27,27 @@ for app in "$@"
 do
     if [[ $FORCE -eq 1 ]]; then
         CONFLICTS=$(stow -nv -t $HOME "$app" 2>&1 | awk '/\* existing target is/ {print $NF}')
-        echo "Found existing dotfiles:"
-        echo "$CONFLICTS"        
-        read -r -p "Are you sure to overwrite? [y/N] " OVERWRITE
-        case "$OVERWRITE" in
-            [yY][eE][sS]|[yY])
-                for filename in $CONFLICTS; do
-                    if [[ -f $HOME/$filename || -L $HOME/$filename ]]; then
-			            echo "Deleting file $HOME/$filename"
-            			if [[ $DRY_RUN -eq 0 ]]; then
-            				rm -f "$HOME/$filename"
-            			fi
-                    fi
-                done
-                ;;
-            *)
-                exit 1
-                ;;
-        esac
+        if [ ! -z $CONFLICTS ]; then
+            echo "Found existing dotfiles:"
+            echo "$CONFLICTS"
+            read -r -p "Are you sure to overwrite? [y/N] " OVERWRITE
+            case "$OVERWRITE" in
+                [yY][eE][sS]|[yY])
+                    for filename in $CONFLICTS; do
+                        if [[ -f $HOME/$filename || -L $HOME/$filename ]]; then
+			                echo "Deleting file $HOME/$filename"
+            			    if [[ $DRY_RUN -eq 0 ]]; then
+                				rm -f "$HOME/$filename"
+            			    fi
+                        fi
+                    done
+                    ;;
+                *)
+                    echo "Aborting..."
+                    exit 0
+                    ;;
+            esac
+        fi
     fi
 
     # restow when force flag supplied
