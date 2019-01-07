@@ -1,0 +1,144 @@
+[color]
+
+    bg = #1F1F1F
+    fg = #FFFFFF
+
+    primary = #FFB300
+    inactive = #CCCCCC
+
+[bar/top]
+
+    monitor = ${env:MONITOR:DVI-0}
+    height = 40
+    ; locale = de_DE.UTF-8
+
+    font-0 = "SauceCodePro Nerd Font Mono:size=10;2"
+    font-1 = "SauceCodePro Nerd Font Mono:size=15;4"
+
+    background = ${color.bg}
+    foreground = ${color.fg}
+
+    padding-left = 1 
+    padding-right = 3
+    module-margin = 1.5
+
+    modules-left = i3
+    modules-center = date
+    modules-right = cpu memory network volume powermenu
+
+[module/i3]
+
+    type = internal/i3
+
+    format = %{T2}<label-state>%{T-} <label-mode>
+
+    strip-wsnumbers = true
+    index-sort = true
+
+    ws-icon-0 = 1: Workspace;%{T2}%{T-}
+    ws-icon-1 = 2: Development;%{T2}%{T-}
+    ws-icon-2 = 3: Communication;%{T2}%{T-}
+    ws-icon-3 = 4: Media;%{T2}%{T-}
+
+    label-mode = %mode%
+    label-mode-padding = 2
+    label-mode-background = #ff0000
+
+    label-focused = %icon% %name%
+    label-focused-foreground = ${color.primary}
+    label-focused-padding = 2
+
+    label-unfocused = %icon% %name%
+    label-unfocused-foreground = ${color.inactive}
+    label-unfocused-padding = 2
+
+    label-visible = %icon% %name%
+    label-visible-underline = ${color.inactive}
+    label-visible-padding = 2
+
+    label-urgent = %index%
+    label-urgent-foreground = #000000
+    label-urgent-background = #bd2c40
+    label-urgent-padding = 2
+
+[module/date]
+
+    type = internal/date
+    date = %A, %d.%m.%Y
+    time = %H:%M
+    format = %{T2}%{T-} <label>
+    label = %date% %time%
+
+[module/volume]
+
+    type = internal/volume
+
+    format-volume = "%{T2}<ramp-volume>%{T-} <label-volume>"
+    format-muted-prefix = "%{T2}ﱝ%{T-} "
+    label-muted = MUTE
+
+    ramp-volume-0 = ""
+    ramp-volume-1 = ""
+    ramp-volume-2 = ""
+    ramp-volume-3 = ""
+    ramp-volume-4 = ""
+    ramp-volume-5 = ""
+    ramp-volume-6 = ""
+
+[module/mpd]
+type = internal/mpd
+
+label-offline = mpd is offline
+format-online = <icon-prev> <toggle> <icon-next> <label-song>
+format-offline = <label-offline>
+host = 127.0.0.1
+port = 6600
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+bar-progress-width = 10
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+[module/cpu]
+
+    type = internal/cpu
+    label = "%{T2}%{T-} %percentage%%"
+
+[module/memory]
+
+    type = internal/memory
+    label = "%{T2}%{T-} %gb_used%"
+
+[module/network]
+
+    type = internal/network
+    interface = enp5s0
+    label-connected = "%{T2}%{T-} %downspeed:8% %{T2}%{T-} %upspeed:8%"
+
+[module/powermenu]
+    
+    type = custom/menu
+
+    label-open= "%{T2}襤%{T-}"
+    label-close= "%{T2}%{T-}"
+    label-close-foreground = ${color.primary}
+    label-separator = " | "
+    expand-right = false
+
+    ; reboot
+    menu-0-1 = "Reboot"
+    menu-0-1-exec = systemctl reboot
+    menu-0-1-foreground = ${color.primary}
+
+    ; shutdown
+    menu-0-0 = "Shutdown"
+    menu-0-0-exec = systemctl poweroff
+    menu-0-0-foreground = ${color.primary}
