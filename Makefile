@@ -1,2 +1,2 @@
 install:
-	./install.sh -f git i3 polybar rofi urxvt vim
+	./install.sh -f git i3 polybar rofi urxvt vim dunst
