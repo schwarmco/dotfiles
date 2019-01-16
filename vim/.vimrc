@@ -8,3 +8,6 @@ set shiftwidth=4    " Indents will have a width of 4
 set softtabstop=4   " Sets the number of columns for a TAB
 
 set expandtab       " Expand TABs to spaces
+
+" provde a shortcut (W) for writing when opened file without sudo
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
