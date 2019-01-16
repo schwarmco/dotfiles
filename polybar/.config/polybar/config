@@ -6,9 +6,9 @@
     primary = #FFB300
     inactive = #CCCCCC
 
-[bar/top]
+[bar/base]
 
-    monitor = ${env:MONITOR:DVI-0}
+    monitor = ${env:MONITOR:}
     height = 40
     ; locale = de_DE.UTF-8
 
@@ -24,7 +24,21 @@
 
     modules-left = i3
     modules-center = date
-    modules-right = cpu memory network volume powermenu
+    modules-right = cpu memory updates network volume battery powermenu
+
+[bar/inspiron]
+
+    inherit = bar/base
+
+    font-1 = "SauceCodePro Nerd Font Mono:size=18;4"
+    modules-right = cpu memory updates network volume battery powermenu
+    networkInterface = wlp1s0
+
+[bar/redb0x]
+
+    inherit = bar/base
+
+    networkInterface = enp5s0
 
 [module/i3]
 
@@ -117,11 +131,46 @@ bar-progress-empty = ─
     type = internal/memory
     label = "%{T2}%{T-} %gb_used%"
 
+[module/updates]
+
+    type = custom/script
+    exec = yay -Qum | wc -l
+    interval = 120
+    format-prefix = "%{T2}痢%{T-} "
+
 [module/network]
 
     type = internal/network
-    interface = enp5s0
+    interface = ${root.networkInterface}
     label-connected = "%{T2}%{T-} %downspeed:8% %{T2}%{T-} %upspeed:8%"
+
+[module/battery]
+
+    type = internal/battery
+    battery = BAT0
+    adapter = AC
+
+    format-charging = %{T2}<animation-charging>%{T-} <label-charging>
+    format-discharging = <ramp-capacity> <label-discharging>
+    format-full = %{T2}%{T-} <label-full>
+
+    label-charging = %percentage%%
+    label-discharging = %percentage%%
+    label-full = Fully Charged
+
+    ramp-capacity-0 = 
+    ramp-capacity-1 = 
+    ramp-capacity-2 = 
+    ramp-capacity-3 = 
+    ramp-capacity-4 = 
+
+    animation-charging-0 = 
+    animation-charging-1 = 
+    animation-charging-2 = 
+    animation-charging-3 = 
+    animation-charging-4 = 
+    ; Framerate in milliseconds
+    animation-charging-framerate = 750
 
 [module/powermenu]
     
