@@ -5,6 +5,7 @@
 
     primary = #FFB300
     inactive = #CCCCCC
+    alert = #BD2C40
 
 [bar/base]
 
@@ -70,9 +71,8 @@
     label-visible-underline = ${color.inactive}
     label-visible-padding = 2
 
-    label-urgent = %index%
-    label-urgent-foreground = #000000
-    label-urgent-background = #bd2c40
+    label-urgent = %icon% %name%
+    label-urgent-foreground = ${color.alert}
     label-urgent-padding = 2
 
 [module/date]
