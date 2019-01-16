@@ -134,7 +134,7 @@ bar-progress-empty = ─
 [module/updates]
 
     type = custom/script
-    exec = yay -Qum | wc -l
+    exec = yay -Qu | wc -l
     interval = 120
     format-prefix = "%{T2}痢%{T-} "
 
