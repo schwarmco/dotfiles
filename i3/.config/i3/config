@@ -25,6 +25,8 @@ client.focused      #FFB300 #FFB300 #1F1F1F #FFB300 #FFB300
 # set font
 font xft:SauceCodePro Nerd Font Mono 9
 
+set $term urxvt
+
 # 
 # BEHAVIOUR
 #
@@ -35,64 +37,68 @@ focus_follows_mouse no
 # set Modifier-Key to the Windows-Key
 set $mod Mod4
 
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
 #
 # BINDINGS
 #
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Apps
 
-# start a terminal (urxvt)
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return         exec $term
+bindsym $mod+d              exec rofi -show run
+bindsym $mod+n              exec $term -e vifm
+bindsym $mod+w              exec firefox
 
-# kill focused window
-bindsym $mod+q kill
+# Actions
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+q              kill
+bindsym $mod+f              fullscreen toggle
+bindsym $mod+h              split h
+bindsym $mod+v              split v
+bindsym $mod+s              layout stacking
+bindsym $mod+e              layout toggle split
+bindsym $mod+Shift+r        restart
+bindsym $mod+l              exec $HOME/.config/i3/scripts/lock.sh
 
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# Special Keys
 
-# change focus
-#bindsym $mod+h focus left
-#bindsym $mod+j focus down
-#bindsym $mod+k focus up
-#bindsym $mod+l focus right
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86MonBrightnessUp     exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown   exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86AudioPlay           exec playerctl play
+bindsym XF86AudioPause          exec playerctl pause
+bindsym XF86AudioNext           exec playerctl next
+bindsym XF86AudioPrev           exec playerctl previous
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#
+# MOVEMENT
+#
 
-# move focused window
-#bindsym $mod+Shift+h move left
-#bindsym $mod+Shift+j move down
-#bindsym $mod+Shift+k move up
-#bindsym $mod+Shift+l move right
+#bindsym $mod+h             focus left
+#bindsym $mod+j             focus down
+#bindsym $mod+k             focus up
+#bindsym $mod+l             focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Left           focus left
+bindsym $mod+Down           focus down
+bindsym $mod+Up             focus up
+bindsym $mod+Right          focus right
 
-# split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+Shift+h       move left
+#bindsym $mod+Shift+j       move down
+#bindsym $mod+Shift+k       move up
+#bindsym $mod+Shift+l       move right
 
-# split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Shift+Left     move left
+bindsym $mod+Shift+Down     move down
+bindsym $mod+Shift+Up       move up
+bindsym $mod+Shift+Right    move right
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -114,13 +120,13 @@ set $ws3 "3: Communication"
 set $ws4 "4: Media"
 
 # bind workspaces to mointors
-set $screenL "HDMI-0"
-set $screenR "DVI-0"
+# set $screenL "HDMI-0"
+# set $screenR "DVI-0"
 
-workspace $ws1 output $screenL
-workspace $ws2 output $screenR
-workspace $ws3 output $screenL
-workspace $ws4 output $screenR
+# workspace $ws1 output $screenL
+# workspace $ws2 output $screenR
+# workspace $ws3 output $screenL
+# workspace $ws4 output $screenR
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -146,15 +152,9 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
+
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -182,3 +182,4 @@ bindsym $mod+r mode "resize"
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 exec --no-startup-id feh --bg-scale $HOME/.config/i3/wallpaper.jpg
+exec --no-startup-id dunst
