@@ -134,7 +134,7 @@ bar-progress-empty = ─
 [module/updates]
 
     type = custom/script
-    exec = yay -Qu | wc -l
+    exec = yay -Qu 2> /dev/null | wc -l
     interval = 120
     format-prefix = "%{T2}痢%{T-} "
 
@@ -181,6 +181,11 @@ bar-progress-empty = ─
     label-close-foreground = ${color.primary}
     label-separator = " | "
     expand-right = false
+
+    ; logout
+    menu-0-2 = "Logout"
+    menu-0-2-exec = i3-msg exit
+    menu-0-2-foreground = ${color.primary}
 
     ; reboot
     menu-0-1 = "Reboot"
