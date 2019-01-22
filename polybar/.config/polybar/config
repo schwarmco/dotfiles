@@ -25,7 +25,7 @@
 
     modules-left = i3
     modules-center = date
-    modules-right = cpu memory updates network volume battery powermenu
+    modules-right = email cpu memory updates network volume battery powermenu
 
 [bar/inspiron]
 
@@ -120,6 +120,13 @@ bar-progress-width = 10
 bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
+
+[module/email]
+
+    type = custom/script
+    exec = $HOME/.config/polybar/scripts/email.sh
+    interval = 20
+    format-prefix = "%{T2}%{T-} "
 
 [module/cpu]
 
