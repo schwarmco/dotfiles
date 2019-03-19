@@ -12,3 +12,9 @@ export PATH="$PATH:$GOPATH/bin"
 
 # source nvm (node version manager)
 source /usr/share/nvm/init-nvm.sh
+
+# pinyin
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -drx
