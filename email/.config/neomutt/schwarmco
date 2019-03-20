@@ -1,0 +1,10 @@
+set realname        = "Joachim Schwarm"
+set from            = "joachim@schwarm.co"
+
+set mbox_type       = Maildir
+set folder          = $HOME/Mail/schwarmco
+set spoolfile       = "+INBOX"
+
+mailboxes           `find ~/Mail/schwarmco/* -maxdepth 0 -type d -printf "=%f "`
+
+set sendmail        = "/usr/bin/msmtp -a schwarmco"

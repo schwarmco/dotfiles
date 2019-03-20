@@ -1,0 +1,28 @@
+set editor = `echo \$EDITOR`
+set charset = "utf-8"
+set send_charset = "utf-8"
+set assumed_charset = "utf-8"
+set mail_check_stats = yes
+
+# APPEARANCE
+
+    set sort = reverse-date
+    source ./base16.muttrc
+
+# SIDEBAR
+
+    set sidebar_visible = yes
+    set sidebar_folder_indent = yes
+    set sidebar_short_path = yes
+    set sidebar_format = "%B%* %?N?%N?"
+
+    bind index \CK sidebar-prev
+    bind index \CJ sidebar-next
+    bind index \CL sidebar-open
+    bind pager \CK sidebar-prev
+    bind pager \CJ sidebar-next
+    bind pager \CL sidebar-open
+
+# ACCOUNTS
+
+    source ./schwarmco
