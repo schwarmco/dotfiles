@@ -3,6 +3,7 @@ set charset = "utf-8"
 set send_charset = "utf-8"
 set assumed_charset = "utf-8"
 set mail_check_stats = yes
+# set mark_old = no
 
 # APPEARANCE
 

@@ -18,7 +18,7 @@
     base0F = #AB7967
 
     primary = ${color.base0A}
-    inactive = ${color.base01}
+    inactive = ${color.base03}
     alert = ${color.base08}
 
     bg = ${color.base00}
@@ -50,7 +50,7 @@
 
     modules-left = i3
     modules-center = date
-    modules-right = email cpu memory updates keyboard network volume powermenu
+    modules-right = email cpu memory updates-apt keyboard network volume powermenu
 
 [bar/inspiron]
 
@@ -124,32 +124,10 @@
     ramp-volume-5 = ""
     ramp-volume-6 = ""
 
-[module/mpd]
-type = internal/mpd
-
-label-offline = mpd is offline
-format-online = <icon-prev> <toggle> <icon-next> <label-song>
-format-offline = <label-offline>
-host = 127.0.0.1
-port = 6600
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-bar-progress-width = 10
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
-
 [module/email]
 
     type = custom/script
-    exec = $HOME/.config/polybar/scripts/email.sh
+    exec = "find $HOME/Mail/schwarmco/INBOX/new -type f | wc -l"
     interval = 20
     format-prefix = "%{T2}%{T-} "
 
@@ -167,6 +145,13 @@ bar-progress-empty = ─
 
     type = custom/script
     exec = yay -Qu 2> /dev/null | wc -l
+    interval = 120
+    format-prefix = "%{T2}痢%{T-} "
+
+[module/updates-apt]
+
+    type = custom/script
+    exec = "echo $((`apt list --upgradeable 2> /dev/null | wc -l` - 1))"
     interval = 120
     format-prefix = "%{T2}痢%{T-} "
 

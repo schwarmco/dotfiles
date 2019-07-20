@@ -10,7 +10,7 @@ maxsyncaccounts     = 1
 
 localrepository     = schwarmco-local
 remoterepository    = schwarmco-remote
-autorefresh         = 1
+autorefresh         = 5
 quick               = 10
 
 [Repository schwarmco-local]

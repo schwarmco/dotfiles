@@ -14,3 +14,6 @@ syntax on           " Enable Syntax Highlighting
 
 " provde a shortcut (W) for writing when opened file without sudo
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+set number
+set relativenumber

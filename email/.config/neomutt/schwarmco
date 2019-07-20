@@ -3,6 +3,7 @@ set from            = "joachim@schwarm.co"
 
 set mbox_type       = Maildir
 set folder          = $HOME/Mail/schwarmco
+set record          = "+INBOX.Sent"
 set spoolfile       = "+INBOX"
 
 mailboxes           `find ~/Mail/schwarmco/* -maxdepth 0 -type d -printf "=%f "`
