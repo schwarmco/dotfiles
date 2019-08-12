@@ -7,4 +7,6 @@
 [commit]
 	gpgsign = true
 [branch]
-    autosetuprebase = always
+	autosetuprebase = always
+[pull]
+	rebase = true

@@ -29,22 +29,24 @@ fi
 # set vim as editor
 export EDITOR="vim"
 
-# add /usr/local/go/bin to path
+# golang specific exports
 export PATH=$PATH:/usr/local/go/bin
-
-# set gopath
 export GOPATH="$HOME/Code"
-
-# add gopath/src as a cdpath, so you can `cd github.com/schwarmco` etc. from anywhere
-export CDPATH=".:$GOPATH/src"
-
-# set gopath/bin as path, so we can execute installed go programs
-export PATH="$PATH:$GOPATH/bin"
+export CDPATH=".:$GOPATH/src" # add gopath/src as cd-able like `cd github.com/schwarmco`
+export PATH="$PATH:$GOPATH/bin" # add gopath/bin as executable path
 
 # add .local/bin (for aws cli)
 export PATH="$PATH:~/.local/bin"
 
+# cleaning $HOME by forcing apps to XDG standard
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
+# export NVM_DIR="$XDG_DATA_HOME"/nvm
+
 # source nvm (node version manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # source /usr/share/nvm/init-nvm.sh
 
 # pinyin

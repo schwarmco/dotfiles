@@ -12,6 +12,7 @@ host=`uname -n`
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
     MONITOR=$m polybar --reload $host &
+    MONITOR=$m polybar --reload bottom &
   done
 else
   polybar --reload $host &

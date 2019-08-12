@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# Base16 OceanicNext - Gnome Terminal color scheme install script
-# https://github.com/voronianski/oceanic-next-color-scheme
+# Base16 - Gnome Terminal color scheme install script
 
-[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="Base 16 OceanicNext 256"
-[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="base-16-oceanicnext-256"
+[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="paper-color.dark"
+[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="paper-color-dark"
 [[ -z "$DCONF" ]] && DCONF=dconf
 [[ -z "$UUIDGEN" ]] && UUIDGEN=uuidgen
 
@@ -18,7 +17,7 @@ dset() {
     "$DCONF" write "$PROFILE_KEY/$key" "$val"
 }
 
-# Because dconf still doesn't have "append"
+# because dconf still doesn't have "append"
 dlist_append() {
     local key="$1"; shift
     local val="$1"; shift
@@ -35,9 +34,6 @@ dlist_append() {
 
 # Newest versions of gnome-terminal use dconf
 if which "$DCONF" > /dev/null 2>&1; then
-    # Check that uuidgen is available
-    type $UUIDGEN >/dev/null 2>&1 || { echo >&2 "Requires uuidgen but it's not installed.  Aborting!"; exit 1; }
-
     [[ -z "$BASE_KEY_NEW" ]] && BASE_KEY_NEW=/org/gnome/terminal/legacy/profiles:
 
     if [[ -n "`$DCONF list $BASE_KEY_NEW/`" ]]; then
@@ -54,22 +50,19 @@ if which "$DCONF" > /dev/null 2>&1; then
         DEFAULT_KEY="$BASE_KEY_NEW/:$DEFAULT_SLUG"
         PROFILE_KEY="$BASE_KEY_NEW/:$PROFILE_SLUG"
 
-        # Copy existing settings from default profile
+        # copy existing settings from default profile
         $DCONF dump "$DEFAULT_KEY/" | $DCONF load "$PROFILE_KEY/"
 
-        # Add new copy to list of profiles
+        # add new copy to list of profiles
         dlist_append $BASE_KEY_NEW/list "$PROFILE_SLUG"
 
-        # Update profile values with theme options
+        # update profile values with theme options
         dset visible-name "'$PROFILE_NAME'"
-        dset palette "['#1b2b34', '#ec5f67', '#99c794', '#fac863', '#6699cc', '#c594c5', '#5fb3b3', '#c0c5ce', '#65737e', '#ec5f67', '#99c794', '#fac863', '#6699cc', '#c594c5', '#5fb3b3', '#d8dee9']"
-        dset background-color "'#1b2b34'"
-        dset foreground-color "'#c0c5ce'"
-        dset bold-color "'#c0c5ce'"
+        dset palette "['#1c1c1c', '#af005f', '#5faf00', '#d7af5f', '#5fafd7', '#808080', '#d7875f', '#d0d0d0', '#585858', '#5faf5f', '#afd700', '#af87d7', '#ffaf00', '#ff5faf', '#00afaf', '#5f8787']"
+        dset background-color "'#1c1c1c'"
+        dset foreground-color "'#c6c6c6'"
+        dset bold-color "'#d0d0d0'"
         dset bold-color-same-as-fg "true"
-        dset cursor-colors-set "true"
-        dset cursor-background-color "'#c0c5ce'"
-        dset cursor-foreground-color "'#1b2b34'"
         dset use-theme-colors "false"
         dset use-theme-background "false"
 
@@ -115,14 +108,11 @@ glist_append() {
 glist_append string /apps/gnome-terminal/global/profile_list "$PROFILE_SLUG"
 
 gset string visible_name "$PROFILE_NAME"
-gset string palette "#1b2b34:#ec5f67:#99c794:#fac863:#6699cc:#c594c5:#5fb3b3:#c0c5ce:#65737e:#ec5f67:#99c794:#fac863:#6699cc:#c594c5:#5fb3b3:#d8dee9"
-gset string background_color "#1b2b34"
-gset string foreground_color "#c0c5ce"
-gset string bold_color "#c0c5ce"
+gset string palette "#151515:#ac4142:#90a959:#f4bf75:#6a9fb5:#aa759f:#75b5aa:#d0d0d0:#505050:#ac4142:#90a959:#f4bf75:#6a9fb5:#aa759f:#75b5aa:#f5f5f5"
+gset string background_color "#151515"
+gset string foreground_color "#d0d0d0"
+gset string bold_color "#d0d0d0"
 gset bool   bold_color_same_as_fg "true"
-gset bool   cursor-colors-set "true"
-gset string cursor-background-color "'#c0c5ce'"
-gset string cursor-foreground-color "'#1b2b34'"
 gset bool   use_theme_colors "false"
 gset bool   use_theme_background "false"
 

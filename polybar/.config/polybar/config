@@ -21,8 +21,8 @@
     inactive = ${color.base03}
     alert = ${color.base08}
 
-    bg = ${color.base00}
-    fg = ${color.base05}
+    bg = #1C1C1C
+    fg = #C6C6C6
 
     ; bg = #1F1F1F
     ; fg = #FFFFFF
@@ -31,15 +31,36 @@
     ; inactive = #CCCCCC
     ; alert = #BD2C40
 
+[bar/bottom]
+
+    monitor = ${env:MONITOR:}
+    height = 30
+    bottom = true
+
+    ; font-0 = "Ubuntu Mono:size=12;1"
+    font-0 = "Source Code Pro:size=10;1"
+    font-1 = "Ubuntu Mono Nerd Font:size=14;3"
+
+    background = ${color.bg}
+    foreground = ${color.fg}
+    
+    padding-left = 3
+    padding-right = 3
+    module-margin = 2 
+
+    modules-left = spotify
+    modules-right = cpu memory updates-apt
+
 [bar/base]
 
     monitor = ${env:MONITOR:}
-    height = 40
+    height = 30
     ; locale = de_DE.UTF-8
 
-    font-0 = "Ubuntu Mono:size=12;2"
-    font-1 = "Ubuntu Mono Nerd Font:size=15;4"
-
+    ; font-0 = "Ubuntu Mono:size=12;1"
+    font-0 = "Source Code Pro:size=10;1"
+    font-1 = "Ubuntu Mono Nerd Font:size=14;3"
+    font-2 = "Noto Sans Mono CJK SC Regular:size=14;3"
 
     background = ${color.bg}
     foreground = ${color.fg}
@@ -50,7 +71,7 @@
 
     modules-left = i3
     modules-center = date
-    modules-right = email cpu memory updates-apt keyboard network volume powermenu
+    modules-right = email keyboard volume powermenu
 
 [bar/inspiron]
 
@@ -75,28 +96,35 @@
     strip-wsnumbers = true
     index-sort = true
 
-    ws-icon-0 = 1: Workspace;%{T2}%{T-}
-    ws-icon-1 = 2: Development;%{T2}%{T-}
-    ws-icon-2 = 3: Communication;%{T2}%{T-}
-    ws-icon-3 = 4: Media;%{T2}%{T-}
+    ws-icon-0 = 1;%{T3}一%{T-} yī
+    ws-icon-1 = 2;%{T3}二%{T-} èr
+    ws-icon-2 = 3;%{T3}三%{T-} sān
+    ws-icon-3 = 4;%{T3}四%{T-} sì
+    ws-icon-4 = 5;%{T3}五%{T-} wǔ
+    ws-icon-5 = 6;%{T3}六%{T-} liù
+
+    ; ws-icon-0 = 1: Workspace;%{T2}%{T-}
+    ; ws-icon-1 = 2: Development;%{T2}%{T-}
+    ; ws-icon-2 = 3: Communication;%{T2}%{T-}
+    ; ws-icon-3 = 4: Media;%{T2}%{T-}
 
     label-mode = %mode%
     label-mode-padding = 2
     label-mode-background = #ff0000
 
-    label-focused = %icon% %name%
+    label-focused = %icon%
     label-focused-foreground = ${color.primary}
     label-focused-padding = 2
 
-    label-unfocused = %icon% %name%
+    label-unfocused = %icon%
     label-unfocused-foreground = ${color.inactive}
     label-unfocused-padding = 2
 
-    label-visible = %icon% %name%
+    label-visible = %icon%
     label-visible-underline = ${color.inactive}
     label-visible-padding = 2
 
-    label-urgent = %icon% %name%
+    label-urgent = %icon%
     label-urgent-foreground = ${color.alert}
     label-urgent-padding = 2
 
@@ -166,6 +194,14 @@
     type = internal/network
     interface = ${root.networkInterface}
     label-connected = "%{T2}%{T-} %downspeed:8% %{T2}%{T-} %upspeed:8%"
+
+[module/spotify]
+
+    type = custom/script
+    interval = 1
+    format-prefix = " "
+    format = <label>
+    exec = python $HOME/.config/polybar/spotify.sh -f '{artist}: {song}'
 
 [module/battery]
 

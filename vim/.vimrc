@@ -9,7 +9,6 @@ set softtabstop=4   " Sets the number of columns for a TAB
 
 set expandtab       " Expand TABs to spaces
 
-colorscheme base16-oceanicnext
 syntax on           " Enable Syntax Highlighting
 
 " provde a shortcut (W) for writing when opened file without sudo
@@ -17,3 +16,8 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 set number
 set relativenumber
+
+set t_Co=256
+colorscheme PaperColor
+set background=dark
+set laststatus=2
