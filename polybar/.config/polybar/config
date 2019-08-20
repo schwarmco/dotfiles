@@ -24,22 +24,14 @@
     bg = #1C1C1C
     fg = #C6C6C6
 
-    ; bg = #1F1F1F
-    ; fg = #FFFFFF
-
-    ; primary = #FFB300
-    ; inactive = #CCCCCC
-    ; alert = #BD2C40
-
 [bar/bottom]
 
     monitor = ${env:MONITOR:}
     height = 30
     bottom = true
 
-    ; font-0 = "Ubuntu Mono:size=12;1"
     font-0 = "Source Code Pro:size=10;1"
-    font-1 = "Ubuntu Mono Nerd Font:size=14;3"
+    font-1 = "Font Awesome 5 Free Solid:size=12;2"
 
     background = ${color.bg}
     foreground = ${color.fg}
@@ -57,10 +49,10 @@
     height = 30
     ; locale = de_DE.UTF-8
 
-    ; font-0 = "Ubuntu Mono:size=12;1"
     font-0 = "Source Code Pro:size=10;1"
-    font-1 = "Ubuntu Mono Nerd Font:size=14;3"
-    font-2 = "Noto Sans Mono CJK SC Regular:size=14;3"
+    font-1 = "Font Awesome 5 Free Solid:size=12;2"
+    font-2 = "Font Awesome 5 Free Regular:size=12;2"
+    font-3 = "Noto Sans Mono CJK SC:size=14;3"
 
     background = ${color.bg}
     foreground = ${color.fg}
@@ -71,14 +63,13 @@
 
     modules-left = i3
     modules-center = date
-    modules-right = email keyboard volume powermenu
+    modules-right = keyboard volume powermenu
 
 [bar/inspiron]
 
     inherit = bar/base
 
-    font-1 = "SauceCodePro Nerd Font Mono:size=18;4"
-    modules-right = cpu memory updates network volume battery powermenu
+    modules-right = keyboard volume battery powermenu
     networkInterface = wlp1s0
 
 [bar/redb0x]
@@ -86,6 +77,12 @@
     inherit = bar/base
 
     networkInterface = enp5s0
+
+[bar/x220]
+
+    inherit = bar/base
+
+    modules-right = keyboard volume battery powermenu
 
 [module/i3]
 
@@ -133,7 +130,7 @@
     type = internal/date
     date = %A, %d.%m.%Y
     time = %H:%M
-    format = %{T2}%{T-} <label>
+    format = %{T3}%{T-} <label>
     label = %date% %time%
 
 [module/volume]
@@ -162,26 +159,26 @@
 [module/cpu]
 
     type = internal/cpu
-    label = "%{T2}%{T-} %percentage%%"
+    label = "%{T2}%{T-} %percentage%%"
 
 [module/memory]
 
     type = internal/memory
-    label = "%{T2}%{T-} %gb_used%"
+    label = "%{T2}%{T-} %gb_used%"
 
 [module/updates]
 
     type = custom/script
     exec = yay -Qu 2> /dev/null | wc -l
     interval = 120
-    format-prefix = "%{T2}痢%{T-} "
+    format-prefix = "%{T2}%{T-} "
 
 [module/updates-apt]
 
     type = custom/script
     exec = "echo $((`apt list --upgradeable 2> /dev/null | wc -l` - 1))"
     interval = 120
-    format-prefix = "%{T2}痢%{T-} "
+    format-prefix = "%{T2}%{T-} "
 
 [module/keyboard]
 
@@ -201,7 +198,7 @@
     interval = 1
     format-prefix = " "
     format = <label>
-    exec = python $HOME/.config/polybar/spotify.sh -f '{artist}: {song}'
+    exec = $HOME/.config/polybar/spotify.py -f '{artist}: {song}'
 
 [module/battery]
 
@@ -217,17 +214,17 @@
     label-discharging = %percentage%%
     label-full = Fully Charged
 
-    ramp-capacity-0 = 
-    ramp-capacity-1 = 
-    ramp-capacity-2 = 
-    ramp-capacity-3 = 
-    ramp-capacity-4 = 
+    ramp-capacity-0 = 
+    ramp-capacity-1 = 
+    ramp-capacity-2 = 
+    ramp-capacity-3 = 
+    ramp-capacity-4 = 
 
-    animation-charging-0 = 
-    animation-charging-1 = 
-    animation-charging-2 = 
-    animation-charging-3 = 
-    animation-charging-4 = 
+    animation-charging-0 = 
+    animation-charging-1 = 
+    animation-charging-2 = 
+    animation-charging-3 = 
+    animation-charging-4 = 
     ; Framerate in milliseconds
     animation-charging-framerate = 750
 
@@ -235,8 +232,8 @@
     
     type = custom/menu
 
-    label-open= "%{T2}襤%{T-}"
-    label-close= "%{T2}%{T-}"
+    label-open= "%{T2}%{T-}"
+    label-close= "%{T2}%{T-}"
     label-close-foreground = ${color.primary}
     label-separator = " | "
     expand-right = false

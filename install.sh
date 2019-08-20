@@ -27,7 +27,7 @@ for app in "$@"
 do
     if [[ $FORCE -eq 1 ]]; then
         CONFLICTS=$(stow -nv -t $HOME "$app" 2>&1 | awk '/\* existing target is/ {print $NF}')
-        if [ ! -z $CONFLICTS ]; then
+        if [ -n "$CONFLICTS" ]; then
             echo "Found existing dotfiles:"
             echo "$CONFLICTS"
             read -r -p "Are you sure to overwrite? [y/N] " OVERWRITE

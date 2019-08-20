@@ -30,5 +30,22 @@ sudo apt install x11-xserver-utils
 git clone https://github.com/adobe-fonts/source-code-pro
 sudo cp source-code-pro/TTF/*.ttf /usr/local/share/fonts
 rm -rf source-code-pro
+
+git clone https://github.com/FortAwesome/Font-Awesome
+sudo cp Font-Awesome/otfs/*.otf /usr/local/share/fonts
+rm -rf Font-Awesome
+
 sudo fc-cache
+```
+
+## Installing i3-related Apps
+
+```bash
+sudo apt install build-essential cmake
+git clone https://github.com/jaagr/polybar
+cd polybar && ./build.sh
+# choose modules to build into polybar
+# if errors occur, install missing deps (there are many)
+
+sudo apt install rofi
 ```
