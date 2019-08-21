@@ -49,6 +49,12 @@ export NVM_DIR="$HOME/.nvm"
 
 # source /usr/share/nvm/init-nvm.sh
 
+export KEYID="A0FDBCC6B6F981D1"
+export GPG_TTY="$(tty)"
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+#gpgconf --launch gpg-agent
+
+
 # pinyin
 # export GTK_IM_MODULE=ibus
 # export XMODIFIERS=@im=ibus

@@ -46,6 +46,22 @@ git clone https://github.com/jaagr/polybar
 cd polybar && ./build.sh
 # choose modules to build into polybar
 # if errors occur, install missing deps (there are many)
+sudo apt install python3-dbus
 
-sudo apt install rofi
+sudo apt install rofi feh
+```
+
+## Mounting Vault
+
+```bash
+sudo apt install cifs-utils
+sudo mkdir -p /mnt/vault/joachim
+sudo mount -t cifs -o user=joachim,uid=js,gid=js //vault.local/joachim /mnt/vault/jocahim
+```
+
+## Setting Identity & Security
+
+```bash
+cp -r /mnt/vault/joachim/backup/home/js/.gnupg ~/
+sudo apt install libpcsclite1 pcscd gnupg-agent scdaemon
 ```
