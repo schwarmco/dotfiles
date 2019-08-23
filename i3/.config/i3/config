@@ -6,8 +6,9 @@
 # VARIABLES
 #
 
-set $term urxvt # gnome-terminal
+set $term st
 set $browser brave-browser
+set $browserAlt qutebrowser
 
 set $base00 #1B2B34
 set $base01 #343D46
@@ -72,6 +73,7 @@ bindsym $mod+Return         exec $term
 bindsym $mod+d              exec rofi -show run
 bindsym $mod+n              exec $term -e vifm
 bindsym $mod+w              exec $browser
+bindsym $mod+Shift+w        exec $browserAlt
 bindsym $mod+k              exec KeeWeb
 bindsym $mod+e              exec codium
 

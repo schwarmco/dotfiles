@@ -54,3 +54,6 @@ export NVM_DIR="$HOME/.nvm"
 # export XMODIFIERS=@im=ibus
 # export QT_IM_MODULE=ibus
 # ibus-daemon -drx
+
+alias ls='ls -hN --color=auto --group-directories-first'
+alias publicip='curl ipinfo.io/ip'

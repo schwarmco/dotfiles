@@ -1,3 +1,4 @@
+! urxvt
 urxvt.scrollBar: false
 urxvt.internalBorder: 10
 
@@ -12,6 +13,7 @@ urxvt.keysym.M-Escape: perl:keyboard-select:activate
 
 ! st
 st.font: Source Code Pro:pixelsize=14;Font Awesome 5 Free Solid:pixelsize=10:antialias=true:autohint=true
+st.borderpx: 10
 
 ! color scheme
 # include ".Xresources.d/paper-color.dark"
