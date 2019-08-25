@@ -41,7 +41,7 @@
     module-margin = 2 
 
     modules-left = spotify
-    modules-right = cpu memory updates-apt
+    modules-right = vault-joachim vault-freelance cpu memory updates-apt
 
 [bar/base]
 
@@ -156,6 +156,20 @@
     exec = "find $HOME/Mail/schwarmco/INBOX/new -type f | wc -l"
     interval = 20
     format-prefix = "%{T2}%{T-} "
+
+[module/vault-joachim]
+
+    type = custom/script
+    exec = "$HOME/.config/polybar/isVaultMounted.sh joachim"
+    click-left = "$HOME/.config/polybar/mountAndOpenVault.sh joachim &"
+    interval = 60
+
+[module/vault-freelance]
+
+    type = custom/script
+    exec = "$HOME/.config/polybar/isVaultMounted.sh freelance"
+    click-left = "$HOME/.config/polybar/mountAndOpenVault.sh freelance &"
+    interval = 60
 
 [module/cpu]
 

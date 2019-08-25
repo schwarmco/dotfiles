@@ -71,7 +71,8 @@ floating_modifier $mod
 
 bindsym $mod+Return         exec $term
 bindsym $mod+d              exec rofi -show run
-bindsym $mod+n              exec $term -e vifm
+bindsym $mod+n              exec $term lf
+bindsym $mod+Shift+n        exec $term vifm # still figuring, which one to use
 bindsym $mod+w              exec $browser
 bindsym $mod+Shift+w        exec $browserAlt
 bindsym $mod+k              exec KeeWeb
@@ -214,7 +215,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec --no-startup-id xrdb $HOME/.Xresources
+exec_always --no-startup-id xrdb $HOME/.Xresources
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 exec --no-startup-id $HOME/.config/i3/mount-vault.sh
 exec --no-startup-id feh --bg-scale $HOME/.config/i3/wallpaper.jpg
