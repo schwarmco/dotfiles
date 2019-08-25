@@ -5,7 +5,7 @@ After installing Debian 10 (without desktop environment), these are the steps, t
 ## Basic Packages
 
 ```bash
-su
+su -
 apt install sudo vim git
 adduser js sudo
 ```
@@ -28,11 +28,11 @@ sudo apt install xserver-xorg xinit
 sudo apt install x11-xserver-utils
 
 git clone https://github.com/adobe-fonts/source-code-pro
-sudo cp source-code-pro/TTF/*.ttf /usr/local/share/fonts
+sudo cp source-code-pro/TTF/*.ttf /usr/local/share/fonts/
 rm -rf source-code-pro
 
 git clone https://github.com/FortAwesome/Font-Awesome
-sudo cp Font-Awesome/otfs/*.otf /usr/local/share/fonts
+sudo cp Font-Awesome/otfs/*.otf /usr/local/share/fonts/
 rm -rf Font-Awesome
 
 sudo fc-cache
@@ -42,11 +42,14 @@ sudo fc-cache
 
 ```bash
 sudo apt install build-essential cmake
+sudo apt install libcurl4-openssl-dev libpulse-dev libiw-dev libxcb-composite0-dev python-xcbgen xcb-proto libxcb-ewmh-dev
 git clone https://github.com/jaagr/polybar
 cd polybar && ./build.sh
-# choose modules to build into polybar
-# if errors occur, install missing deps (there are many)
-sudo apt install python3-dbus
+
+# modules i've chosen (and the dependencies up there relate to):
+# i3, pulseaudio, network, github, ipc
+
+sudo apt install python3-dbus # for the polybar-spotify-plugin
 
 sudo apt install rofi feh
 ```
