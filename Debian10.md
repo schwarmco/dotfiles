@@ -35,6 +35,11 @@ git clone https://github.com/FortAwesome/Font-Awesome
 sudo cp Font-Awesome/otfs/*.otf /usr/local/share/fonts/
 rm -rf Font-Awesome
 
+# only the Mono SC is needed, so cloning the gitrepo is overkill
+wget https://github.com/googlefonts/noto-cjk/raw/master/NotoSansMonoCJKsc-Regular.otf
+sudo mv NotoSansMonoCJKsc-Regular.otf /usr/local/share/fonts/
+rm NotoSansMonoCJKsc-Regular.otf
+
 sudo fc-cache
 ```
 
