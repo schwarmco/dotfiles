@@ -8,6 +8,11 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# start X, if logging on to tty1
+if [[ "$(tty)" == "/dev/tty1" ]]; then 
+    exec startx
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
