@@ -1,23 +1,89 @@
-set tabstop=4       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
+" vim:foldmethod=marker
 
-set shiftwidth=4    " Indents will have a width of 4
+" Plugins {{{
 
-set softtabstop=4   " Sets the number of columns for a TAB
+    " unimpaired {{{
 
-set expandtab       " Expand TABs to spaces
+        " move single lines
+        nmap <C-k> [e
+        nmap <C-j> ]e
+        " move visual selected lines
+        vmap <C-k> [egv
+        vmap <C-j> ]egv
 
-syntax on           " Enable Syntax Highlighting
+    " }}}
 
-" provde a shortcut (W) for writing when opened file without sudo
-command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+    " vmath {{{
+    
+        vmap <expr> ++ VMATH_YankAndAnalyse()
+        nmap        ++ vip++    
+    
+    " }}}
 
-set number
-set relativenumber
+    " vimwiki {{{
 
-set t_Co=256
-colorscheme PaperColor
-set background=dark
-set laststatus=2
+        set nocompatible
+        filetype plugin on
+        syntax on
+        let g:vimwiki_list = [{ 'path': '~/notes/' }]
+        let g:vimwiki_folding = 'expr'
+
+    " }}}
+
+    " vim-markdown-folding {{{
+        
+        filetype plugin indent on
+    
+    " }}}
+
+" }}}
+
+" General Settings {{{
+
+    let mapleader=","
+    set number
+    set relativenumber
+    set cursorline
+
+" }}}
+
+" Keybindings {{{
+
+    let mapleader=","
+    " Open and close folds with Space
+    nnoremap <space> za
+    " When editing root-owned files as a user, provide :W to sudo-write the file
+    command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+" }}}
+
+" Tabs'n'Spaces {{{
+
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+
+" }}}
+
+" Colorscheme {{{
+
+    syntax on
+
+    set t_Co=256
+    colorscheme PaperColor
+    set background=dark
+    set laststatus=2
+
+    " mark text going over a linelength of 80 in red
+    highlight ColorColumn ctermfg=magenta ctermbg=none
+    let &colorcolumn=join(range(81, 335), ',')
+
+    "
+    set hlsearch
+
+    " exec "set listchars=trail:\uB7,nbsp:\uB7"
+    " set list
+
+" }}}
+
