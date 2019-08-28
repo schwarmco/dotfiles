@@ -56,9 +56,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export KEYID="A0FDBCC6B6F981D1"
 export GPG_TTY="$(tty)"
-#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-#gpgconf --launch gpg-agent
-
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 # pinyin
 # export GTK_IM_MODULE=ibus
