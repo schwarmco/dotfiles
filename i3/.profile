@@ -44,8 +44,10 @@ export PATH="$PATH:$GOPATH/bin" # add gopath/bin as executable path
 export PATH="$PATH:~/.local/bin"
 
 # cleaning $HOME by forcing apps to XDG standard
-export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
-# export NVM_DIR="$XDG_DATA_HOME"/nvm
+export XDG_CONFIG_HOME="$HOME/.config"
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
+# export NVM_DIR="$XDG_DATA_HOME/nvm"
+export UNISON="$XDG_CONFIG_HOME/unison"
 
 # source nvm (node version manager)
 export NVM_DIR="$HOME/.nvm"
@@ -58,6 +60,7 @@ export KEYID="A0FDBCC6B6F981D1"
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye
 
 # pinyin
 # export GTK_IM_MODULE=ibus
