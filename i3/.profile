@@ -47,7 +47,7 @@ export PATH="$PATH:~/.local/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
 # export NVM_DIR="$XDG_DATA_HOME/nvm"
-export UNISON="$XDG_CONFIG_HOME/unison"
+# export UNISON="$XDG_CONFIG_HOME/unison"
 
 # source nvm (node version manager)
 export NVM_DIR="$HOME/.nvm"
