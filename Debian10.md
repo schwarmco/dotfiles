@@ -108,7 +108,7 @@ cd ~/src/github.com/schwarmco/dotfiles
 
 ## Install Brave
 
-```
+```bash
 sudo apt install apt-transport-https curl
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ trusty main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-trusty.list
@@ -116,18 +116,13 @@ sudo apt update
 sudo apt install brave-browser
 ```
 
-https://eu25.lightning.force.com/lightning/setup/ApexPages/page?address=%2F06657000000cF6V
-
-https://eu25.lightning.force.com/lightning/setup/ApexPages/page?address=%2F06657000000cF6X
-https://eu25.lightning.force.com/lightning/setup/ApexClasses/page?address=%2F01p57000000cNj1
-
-
 ## Mounting Vault
 
 ```bash
 sudo apt install cifs-utils
 sudo mkdir -p /mnt/vault/joachim
-sudo mount -t cifs -o user=joachim,uid=js,gid=js //vault.local/joachim /mnt/vault/joachim
+# add vault to /etc/hosts
+# add entries to /etc/fstab
 ```
 
 ## Setting Identity & Security
@@ -135,4 +130,49 @@ sudo mount -t cifs -o user=joachim,uid=js,gid=js //vault.local/joachim /mnt/vaul
 ```bash
 cp -r /mnt/vault/joachim/backup/home/js/.gnupg ~/
 sudo apt install libpcsclite1 pcscd gnupg-agent scdaemon
+```
+
+## Setting up Wifi (on Inspiron)
+
+```bash
+# add non-free in apt sources.list
+sudo apt install firmware-iwlwifi
+sudo apt install --no-install-recommends network-manager
+```
+
+## Setting up Audio
+
+```bash
+sudo apt install pavucontrol # installs all needed pulseaudio stuff
+```
+
+## Setup Passwordmanager
+
+```bash
+# Keeweb (until deprecated)
+
+sudo apt install pass 
+# do not install deb-pkg webext-browserpass - it's outdated
+# install manually instead: https://github.com/browserpass/browserpass-native
+# add browserpass ext to brave:
+# https://chrome.google.com/webstore/detail/browserpass/naepdomgkenhinolocfifgehidddafch
+```
+
+## Install Development Environment
+
+```bash
+# install nvm @ https://github.com/nvm-sh/nvm
+
+# install docker
+wget https://download.docker.com/linux/debian/gpg 
+sudo apt-key add gpg
+echo "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+# allow to run docker without sudo:
+sudo adduser js docker #need to re-loginn
+
+# install heroku cli
+curl https://cli-assets.heroku.com/install.sh | sh
+
 ```

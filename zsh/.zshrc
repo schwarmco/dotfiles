@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/js/.oh-my-zsh"
+export ZSH="/home/js/.config/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -97,3 +97,37 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+alias ls='ls -hN --color=auto --group-directories-first'
+alias publicip='curl ipinfo.io/ip'
+
+export EDITOR="vim"
+
+# cleaning $HOME by forcing apps to XDG standard
+export XDG_CONFIG_HOME="$HOME/.config"
+export UNISON="$XDG_CONFIG_HOME/unison"
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# this is need, so pinentry shows on the right terminal emulator
+export KEYID="A0FDBCC6B6F981D1"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export GPG_TTY="$(tty)"
+if [ -x "$(which gpg-connect-agent)" ]; then
+    gpg-connect-agent updatestartuptty /bye >& /dev/null
+fi
+
+# add user's private bin / go-bin folder
+if [ -d "$HOME/bin" ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+# start X, if logging on to tty1
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+    exec startx
+fi
+

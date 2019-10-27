@@ -69,7 +69,7 @@
 
     inherit = bar/base
 
-    modules-right = keyboard volume battery powermenu
+    modules-right = network volume battery powermenu
     networkInterface = wlp1s0
 
 [bar/redb0x]
@@ -89,22 +89,24 @@
 
     type = internal/i3
 
-    format = %{T2}<label-state>%{T-} <label-mode>
+    format = %{T1}<label-state>%{T-}
 
     strip-wsnumbers = true
     index-sort = true
 
-    ws-icon-0 = 1;%{T3}一%{T-} yī
-    ws-icon-1 = 2;%{T3}二%{T-} èr
-    ws-icon-2 = 3;%{T3}三%{T-} sān
-    ws-icon-3 = 4;%{T3}四%{T-} sì
-    ws-icon-4 = 5;%{T3}五%{T-} wǔ
-    ws-icon-5 = 6;%{T3}六%{T-} liù
+    ; ws-icon-0 = 1;%{T3}一%{T-} yī
+    ; ws-icon-1 = 2;%{T3}二%{T-} èr
+    ; ws-icon-2 = 3;%{T3}三%{T-} sān
+    ; ws-icon-3 = 4;%{T3}四%{T-} sì
+    ; ws-icon-4 = 5;%{T3}五%{T-} wǔ
+    ; ws-icon-5 = 6;%{T3}六%{T-} liù
 
-    ; ws-icon-0 = 1: Workspace;%{T2}%{T-}
-    ; ws-icon-1 = 2: Development;%{T2}%{T-}
-    ; ws-icon-2 = 3: Communication;%{T2}%{T-}
-    ; ws-icon-3 = 4: Media;%{T2}%{T-}
+    ws-icon-0 = 1;1: web
+    ws-icon-1 = 2;2: dev
+    ws-icon-2 = 3;3: com
+    ws-icon-3 = 4;4: mp3
+    ws-icon-4 = 5;5: tmp
+    ws-icon-5 = 6;6: srv
 
     label-mode = %mode%
     label-mode-padding = 2
@@ -139,7 +141,7 @@
     type = internal/pulseaudio
 
     format-volume = "%{T2}<ramp-volume>%{T-} <label-volume>"
-    format-muted-prefix = "%{T2}ﱝ%{T-} "
+    format-muted-prefix = "%{T2}%{T-} "
     label-muted = MUTE
 
     ramp-volume-0 = ""
@@ -263,10 +265,10 @@
 
     ; reboot
     menu-0-1 = "Reboot"
-    menu-0-1-exec = systemctl reboot
+    menu-0-1-exec = sudo systemctl reboot
     menu-0-1-foreground = ${color.primary}
 
     ; shutdown
     menu-0-0 = "Shutdown"
-    menu-0-0-exec = systemctl poweroff
+    menu-0-0-exec = sudo systemctl poweroff
     menu-0-0-foreground = ${color.primary}

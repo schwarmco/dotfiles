@@ -36,7 +36,7 @@ export EDITOR="vim"
 
 # golang specific exports
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH="$HOME/Code"
+export GOPATH="$HOME"
 export CDPATH=".:$GOPATH/src" # add gopath/src as cd-able like `cd github.com/schwarmco`
 export PATH="$PATH:$GOPATH/bin" # add gopath/bin as executable path
 
@@ -48,6 +48,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
 # export NVM_DIR="$XDG_DATA_HOME/nvm"
 # export UNISON="$XDG_CONFIG_HOME/unison"
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 
 # source nvm (node version manager)
 export NVM_DIR="$HOME/.nvm"
@@ -56,11 +57,11 @@ export NVM_DIR="$HOME/.nvm"
 
 # source /usr/share/nvm/init-nvm.sh
 
-export KEYID="A0FDBCC6B6F981D1"
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-gpg-connect-agent updatestartuptty /bye
+#export KEYID="A0FDBCC6B6F981D1"
+#export GPG_TTY="$(tty)"
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+#gpgconf --launch gpg-agent
+#gpg-connect-agent updatestartuptty /bye
 
 # pinyin
 # export GTK_IM_MODULE=ibus
