@@ -1,6 +1,8 @@
-# My Setup of Debian 10 on a Thinkpad T60
+# My Setup of Debian 10 on a Dell Inspiron 13" 7359 2-in-1
 
-After installing Debian 10 (without desktop environment), these are the steps, to get the system up and running to a point, where i can `git-stow` this repository and have my usual setup.
+After installing Debian 10 (without desktop environment), 
+these are the steps, to get the system up and running to a point, 
+where i can `git-stow` this repository and have my usual setup.
  
 ## Basic Packages
 
@@ -128,11 +130,11 @@ sudo mkdir -p /mnt/vault/joachim
 ## Setting Identity & Security
 
 ```bash
-cp -r /mnt/vault/joachim/backup/home/js/.gnupg ~/
+cp -r /mnt/vault/joachim/gnupg ~/
 sudo apt install libpcsclite1 pcscd gnupg-agent scdaemon
 ```
 
-## Setting up Wifi (on Inspiron)
+## Setting up Wifi
 
 ```bash
 # add non-free in apt sources.list
@@ -175,4 +177,10 @@ sudo adduser js docker #need to re-loginn
 # install heroku cli
 curl https://cli-assets.heroku.com/install.sh | sh
 
+```
+
+## Unorganized Yet
+
+```bash
+sudo apt install openvpn
 ```
