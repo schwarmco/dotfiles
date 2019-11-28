@@ -184,3 +184,13 @@ curl https://cli-assets.heroku.com/install.sh | sh
 ```bash
 sudo apt install openvpn
 ```
+
+## Enhance Vim
+
+```bash
+sudo apt install vim-youcompleteme
+vam install youcompleteme
+
+sudo apt install vim-gtk # for +clipboard
+```
+

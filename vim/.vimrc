@@ -1,6 +1,19 @@
 " vim:foldmethod=marker
 
+set nocompatible
+filetype off
+
 " Plugins {{{
+
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+
+    Plugin 'VundleVim/Vundle.vim'
+
+    Plugin 'ycm-core/YouCompleteMe'
+
+    call vundle#end()
+    filetype plugin indent on
 
     " unimpaired {{{
 
@@ -22,7 +35,6 @@
 
     " vimwiki {{{
 
-        set nocompatible
         filetype plugin on
         syntax on
         let g:vimwiki_list = [{ 'path': '~/notes/' }]
@@ -49,7 +61,6 @@
 
 " Keybindings {{{
 
-    let mapleader=","
     " Open and close folds with Space
     nnoremap <space> za
     " When editing root-owned files as a user, provide :W to sudo-write the file
