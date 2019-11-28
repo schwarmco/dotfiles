@@ -102,6 +102,13 @@ source $ZSH/oh-my-zsh.sh
 alias ls='ls -hN --color=auto --group-directories-first'
 alias publicip='curl ipinfo.io/ip'
 
+# working dirs
+alias nep='cd ~/Code/src/gitlab.com/digitaleseiten/neptune'
+alias zts='cd ~/Code/src/git.zdserv.de/ZentgrafTeamSupport/ZTS-CRMToolV2'
+
+# suffix
+alias -s {jpg,JPG,jpeg,JPEG,png,PNG,svg,gif}='gpicview'
+
 export EDITOR="vim"
 
 # cleaning $HOME by forcing apps to XDG standard

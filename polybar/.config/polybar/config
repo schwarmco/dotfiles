@@ -216,7 +216,7 @@
 
     type = custom/script
     interval = 1
-    format-prefix = " "
+    format-prefix = " "
     format = <label>
     exec = $HOME/.config/polybar/spotify.py -f '{artist}: {song}'
 
