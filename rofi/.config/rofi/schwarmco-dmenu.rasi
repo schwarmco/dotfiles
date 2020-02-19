@@ -1,0 +1,55 @@
+* {
+    base-bg: #1c1c1c;
+    selected-bg: #ffaf00;
+    base-color: #d0d0d0;
+    selected-color: @base-bg;
+    transparent: #00000000;
+    text-color: @base-color;
+    input-fg: #1c1c1c;
+    input-bg: #d0d0d0;
+    border: 0px;
+}
+#window {
+  anchor: north west;
+  location: north west;
+  width: 40%;
+  background-color: @base-bg;
+  margin: 0px 0px 0px 0px;
+  children: [ horibox ];
+}
+#horibox {
+  background-color: @transparent;
+  orientation: horizontal;
+  children: [ prompt, textbox-prompt-colon, entry, listview ];
+}
+#prompt {
+  padding: 8px 0px 8px 10px;
+  background-color: @transparent;
+}
+#textbox-prompt-colon  {
+  expand: false;
+  str: ":";
+  padding: 8px 10px 8px 0px;
+  background-color: @transparent;
+}
+#entry {
+  padding: 8px;
+  text-color: @input-fg;
+  background-color: @input-bg;
+  expand: false;
+  width: 10em;
+}
+#listview {
+  background-color: @transparent;
+  layout: horizontal;
+  spacing: 5px;
+  lines: 100;
+}
+#element {
+  background-color: @transparent;
+  padding: 8px;
+}
+#element selected {
+  text-color: @selected-color;
+  background-color: @selected-bg;
+}

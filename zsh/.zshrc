@@ -99,12 +99,21 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# functions
+function dockerssh() {
+    docker exec -it $1 bash
+}
+
 alias ls='ls -hN --color=auto --group-directories-first'
 alias publicip='curl ipinfo.io/ip'
+alias dockerip='docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"'
 
 # working dirs
 alias nep='cd ~/src/gitlab.com/digitaleseiten/neptune'
+alias hyd='cd ~/src/gitlab.com/digitaleseiten/hydra'
 alias zts='cd ~/src/git.zdserv.de/ZentgrafTeamSupport/ZTS-CRMToolV2'
+alias gh='cd ~/src/github.com'
+alias gl='cd ~/src/gitlab.com'
 
 # suffix
 alias -s {jpg,JPG,jpeg,JPEG,png,PNG,svg,gif}='gpicview'
@@ -119,6 +128,13 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# fzf
+if [[ ! "$PATH" == */home/js/.config/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/home/js/.config/fzf/bin"
+fi
+[[ $- == *i* ]] && source "/home/js/.config/fzf/shell/completion.zsh" 2> /dev/null
+source "/home/js/.config/fzf/shell/key-bindings.zsh"
 
 # this is need, so pinentry shows on the right terminal emulator
 export KEYID="A0FDBCC6B6F981D1"
@@ -137,4 +153,5 @@ fi
 if [[ "$(tty)" == "/dev/tty1" ]]; then
     exec startx
 fi
+
 

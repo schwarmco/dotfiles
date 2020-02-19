@@ -1,28 +1,31 @@
 [color]
 
-    base00 = #1B2B34
-    base01 = #343D46
-    base02 = #4F5B66
-    base03 = #65737E
-    base04 = #A7ADBA
-    base05 = #C0C5CE
-    base06 = #CDD3DE
-    base07 = #D8DEE9
-    base08 = #EC5f67
-    base09 = #F99157
-    base0A = #FAC863
-    base0B = #99C794
-    base0C = #5FB3B3
-    base0D = #6699CC
-    base0E = #C594C5
-    base0F = #AB7967
+    ; normal
+    base00 = #1c1c1c
+    base01 = #af005f
+    base02 = #5faf00
+    base03 = #d7af5f
+    base04 = #5fafd7
+    base05 = #808080
+    base06 = #d7875f
+    base07 = #d0d0d0
 
-    primary = ${color.base0A}
-    inactive = ${color.base03}
-    alert = ${color.base08}
+    ; bright
+    base08 = #585858
+    base09 = #5faf5f
+    base0A = #afd700
+    base0B = #af8d7d
+    base0C = #ffaf00
+    base0D = #ff5faf
+    base0E = #00afaf
+    base0F = #5f8787
 
-    bg = #1C1C1C
-    fg = #C6C6C6
+    primary = ${color.base0C}
+    inactive = ${color.base08}
+    alert = ${color.base01}
+
+    bg = #1c1c1c
+    fg = #d0d0d0
 
 [bar/bottom]
 
@@ -47,12 +50,10 @@
 
     monitor = ${env:MONITOR:}
     height = 30
-    ; locale = de_DE.UTF-8
 
     font-0 = "Source Code Pro:size=10;1"
     font-1 = "Font Awesome 5 Free Solid:size=12;2"
     font-2 = "Font Awesome 5 Free Regular:size=12;2"
-    font-3 = "Noto Sans Mono CJK SC:size=14;3"
 
     background = ${color.bg}
     foreground = ${color.fg}
@@ -63,7 +64,7 @@
 
     modules-left = i3
     modules-center = date
-    modules-right = keyboard volume powermenu
+    modules-right = volume powermenu
 
 [bar/inspiron]
 
@@ -72,11 +73,12 @@
     modules-right = network volume battery powermenu
     networkInterface = wlp1s0
 
-[bar/redb0x]
+[bar/redbox]
 
     inherit = bar/base
 
-    networkInterface = enp5s0
+    modules-right = network-vpn network-wired volume powermenu
+    networkInterface = enp6s0
 
 [bar/x220]
 
@@ -110,7 +112,6 @@
 
     label-mode = %mode%
     label-mode-padding = 2
-    label-mode-background = #ff0000
 
     label-focused = %icon%
     label-focused-foreground = ${color.primary}
@@ -212,6 +213,22 @@
     
     ; label-connected = "%{T2}%{T-} %downspeed:8% %{T2}%{T-} %upspeed:8%"
 
+[module/network-wired]
+
+    type = internal/network
+    interface = ${root.networkInterface}
+
+    label-connected =   %local_ip%
+    label-disconnected =  offline
+
+[module/network-vpn]
+
+    type = internal/network
+    interface = tun0
+
+    label-connected =  %local_ip% 
+    label-disconnected =  offline
+    
 [module/spotify]
 
     type = custom/script

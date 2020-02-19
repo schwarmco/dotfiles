@@ -1,2 +1,2 @@
-rofi.font: xft:Ubuntu Mono Nerd Font 8
-rofi.theme: base16-oceanicnext
+rofi.font: xft:Source Code Pro 8
+rofi.theme: schwarmco-dmenu

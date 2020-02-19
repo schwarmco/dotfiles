@@ -5,15 +5,28 @@ filetype off
 
 " Plugins {{{
 
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+    " install vim-plug if not already installed
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $HOME/.vimrc
+    endif
 
-    Plugin 'VundleVim/Vundle.vim'
+    call plug#begin('~/.vim/plugged')
 
-    Plugin 'ycm-core/YouCompleteMe'
+    Plug 'vimwiki/vimwiki'
+    filetype plugin on
+    syntax on
+    let g:vimwiki_list = [{ 'path': '~/notes/' }]
+    let g:vimwiki_folding = 'expr'
 
-    call vundle#end()
-    filetype plugin indent on
+    Plug '~/.config/fzf'
+    Plug 'junegunn/fzf.vim'
+    map <C-p> :Files<CR>
+
+    Plug 'terryma/vim-multiple-cursors'
+
+    Plug 'easymotion/vim-easymotion'
 
     " unimpaired {{{
 
@@ -33,20 +46,13 @@ filetype off
     
     " }}}
 
-    " vimwiki {{{
-
-        filetype plugin on
-        syntax on
-        let g:vimwiki_list = [{ 'path': '~/notes/' }]
-        let g:vimwiki_folding = 'expr'
-
-    " }}}
-
     " vim-markdown-folding {{{
         
         filetype plugin indent on
     
     " }}}
+    
+    call plug#end()
 
 " }}}
 
@@ -87,8 +93,8 @@ filetype off
     set laststatus=2
 
     " mark text going over a linelength of 80 in red
-    highlight ColorColumn ctermfg=magenta ctermbg=none
-    let &colorcolumn=join(range(81, 335), ',')
+    " highlight ColorColumn ctermfg=magenta ctermbg=none
+    " let &colorcolumn=join(range(81, 335), ',')
 
     "
     set hlsearch

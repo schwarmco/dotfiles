@@ -1,0 +1,10 @@
+# Backup Vimwiki Notes to mounted cifs share
+
+root = /home/js/notes
+root = /mnt/vault/joachim/notes
+
+fat = true
+
+ignore = Name *.swp
+ignore = Name *.swx
+ignore = Name *~
